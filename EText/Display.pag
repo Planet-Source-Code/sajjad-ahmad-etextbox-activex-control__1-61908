@@ -1,0 +1,248 @@
+VERSION 5.00
+Begin VB.PropertyPage Display 
+   Caption         =   "Display"
+   ClientHeight    =   3840
+   ClientLeft      =   0
+   ClientTop       =   0
+   ClientWidth     =   5865
+   PaletteMode     =   0  'Halftone
+   ScaleHeight     =   3840
+   ScaleWidth      =   5865
+   Begin VB.Frame Frame2 
+      Caption         =   "Text Case:"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   1935
+      Left            =   3000
+      TabIndex        =   12
+      Top             =   1800
+      Width           =   2535
+      Begin VB.OptionButton Option2 
+         Caption         =   "lower case"
+         Height          =   255
+         Index           =   2
+         Left            =   360
+         TabIndex        =   15
+         Top             =   1440
+         Width           =   1935
+      End
+      Begin VB.OptionButton Option2 
+         Caption         =   "UPPER CASE"
+         Height          =   255
+         Index           =   1
+         Left            =   360
+         TabIndex        =   14
+         Top             =   960
+         Width           =   1935
+      End
+      Begin VB.OptionButton Option2 
+         Caption         =   "Normal"
+         Height          =   255
+         Index           =   0
+         Left            =   360
+         TabIndex        =   13
+         Top             =   480
+         Value           =   -1  'True
+         Width           =   1935
+      End
+   End
+   Begin VB.Frame Frame1 
+      Caption         =   "Input Format:"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   3615
+      Left            =   360
+      TabIndex        =   2
+      Top             =   120
+      Width           =   2295
+      Begin VB.OptionButton Option1 
+         Caption         =   "Date Only"
+         Height          =   255
+         Index           =   8
+         Left            =   240
+         TabIndex        =   11
+         Top             =   3240
+         Width           =   1335
+      End
+      Begin VB.OptionButton Option1 
+         Caption         =   "Decimal Value"
+         Height          =   255
+         Index           =   7
+         Left            =   240
+         TabIndex        =   10
+         Top             =   2880
+         Width           =   1455
+      End
+      Begin VB.OptionButton Option1 
+         Caption         =   "Fractions"
+         Height          =   255
+         Index           =   6
+         Left            =   240
+         TabIndex        =   9
+         Top             =   2520
+         Width           =   1335
+      End
+      Begin VB.OptionButton Option1 
+         Caption         =   "Percent Value"
+         Height          =   255
+         Index           =   5
+         Left            =   240
+         TabIndex        =   8
+         Top             =   2160
+         Width           =   1575
+      End
+      Begin VB.OptionButton Option1 
+         Caption         =   "Currency"
+         Height          =   255
+         Index           =   4
+         Left            =   240
+         TabIndex        =   7
+         Top             =   1800
+         Width           =   1455
+      End
+      Begin VB.OptionButton Option1 
+         Caption         =   "Letters and Numbers"
+         Height          =   255
+         Index           =   3
+         Left            =   240
+         TabIndex        =   6
+         Top             =   1440
+         Width           =   1815
+      End
+      Begin VB.OptionButton Option1 
+         Caption         =   "Numbers-NoSpace"
+         Height          =   255
+         Index           =   2
+         Left            =   240
+         TabIndex        =   5
+         Top             =   1080
+         Width           =   1815
+      End
+      Begin VB.OptionButton Option1 
+         Caption         =   "Letters - NoSpace"
+         Height          =   255
+         Index           =   1
+         Left            =   240
+         TabIndex        =   4
+         Top             =   720
+         Width           =   1695
+      End
+      Begin VB.OptionButton Option1 
+         Caption         =   "Normal"
+         Height          =   255
+         Index           =   0
+         Left            =   240
+         TabIndex        =   3
+         Top             =   360
+         Value           =   -1  'True
+         Width           =   1575
+      End
+   End
+   Begin VB.TextBox txtDisplay 
+      Alignment       =   2  'Center
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   14.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   450
+      Left            =   2880
+      Locked          =   -1  'True
+      TabIndex        =   1
+      Top             =   720
+      Width           =   2460
+   End
+   Begin VB.Label lblDisplay 
+      Alignment       =   2  'Center
+      Caption         =   "D I S P L A Y"
+      BeginProperty Font 
+         Name            =   "Times New Roman"
+         Size            =   18
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
+      Left            =   2880
+      TabIndex        =   0
+      Top             =   240
+      Width           =   2460
+   End
+End
+Attribute VB_Name = "Display"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = True
+Attribute VB_PredeclaredId = False
+Attribute VB_Exposed = True
+Private Sub Option1_Click(Index As Integer)
+Changed = True
+End Sub
+
+Private Sub Option2_Click(Index As Integer)
+Changed = True
+End Sub
+
+Private Sub txtDisplay_Change()
+    Changed = True
+End Sub
+
+Private Sub PropertyPage_ApplyChanges()
+    SelectedControls(0).Display = txtDisplay.Text
+    
+    'Text Type Selection
+    If Option1(0).Value = True Then
+        SelectedControls(0).TextType = 0
+    ElseIf Option1(1).Value = True Then
+        SelectedControls(0).TextType = 1
+    ElseIf Option1(2).Value = True Then
+        SelectedControls(0).TextType = 2
+    ElseIf Option1(3).Value = True Then
+        SelectedControls(0).TextType = 3
+    ElseIf Option1(4).Value = True Then
+        SelectedControls(0).TextType = 4
+    ElseIf Option1(5).Value = True Then
+        SelectedControls(0).TextType = 5
+    ElseIf Option1(6).Value = True Then
+        SelectedControls(0).TextType = 6
+    ElseIf Option1(7).Value = True Then
+        SelectedControls(0).TextType = 7
+    ElseIf Option1(8).Value = True Then
+        SelectedControls(0).TextType = 8
+    End If
+    
+    'Text Case Selection
+    If Option2(0).Value = True Then
+        SelectedControls(0).TextCaseType = 0
+    ElseIf Option2(1).Value = True Then
+        SelectedControls(0).TextCaseType = 1
+    ElseIf Option2(2).Value = True Then
+        SelectedControls(0).TextCaseType = 2
+    End If
+End Sub
+
+
+Private Sub PropertyPage_SelectionChanged()
+    txtDisplay.Text = SelectedControls(0).Display
+End Sub
+
+
